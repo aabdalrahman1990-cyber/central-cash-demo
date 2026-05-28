@@ -1,0 +1,25 @@
+   ▲ Next.js 15.5.18
+   - Local:        http://localhost:3006
+   - Network:      http://192.168.68.103:3006
+
+ ✓ Starting...
+ ✓ Ready in 3.1s
+ ○ Compiling /[locale]/portal ...
+ ✓ Compiled /[locale]/portal in 13s (4910 modules)
+ GET /ar/portal 200 in 14651ms
+ GET /ar/portal 500 in 1746ms
+ ○ Compiling / ...
+ ✓ Compiled / in 3.3s (4923 modules)
+ GET /ar/portal 500 in 2349ms
+ GET /ar/portal 500 in 1641ms
+ ✓ Compiled in 1933ms (4913 modules)
+ GET /ar/portal 200 in 1828ms
+ GET /ar/portal 200 in 153ms
+ GET /ar/portal 200 in 492ms
+ ○ Compiling /[locale]/portal/[screen] ...
+ ✓ Compiled /[locale]/portal/[screen] in 4.8s (4913 modules)
+ GET /ar/portal/branches 200 in 6483ms
+ GET /ar/portal/branches 200 in 113ms
+ GET /ar/portal/create-request 200 in 112ms
+ GET /ar/portal 200 in 214ms
+ ✓ Compiled in 731ms (2365 modules)

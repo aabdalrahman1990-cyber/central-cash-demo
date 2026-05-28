@@ -1,0 +1,41 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: cbi-postgres
+    environment:
+      POSTGRES_DB: central_cash
+      POSTGRES_USER: cbi_admin
+      POSTGRES_PASSWORD: cbi_secure_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+  api:
+    build:
+      context: .
+      dockerfile: apps/api/Dockerfile
+    environment:
+      PORT: 4006
+      DATABASE_URL: postgresql://cbi_admin:cbi_secure_password@postgres:5432/central_cash
+      JWT_SECRET: prototype-super-secret
+    ports:
+      - "4006:4006"
+    depends_on:
+      - postgres
+
+  web:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+    environment:
+      NEXT_PUBLIC_API_BASE_URL: http://localhost:4006/api
+    ports:
+      - "3006:3006"
+    depends_on:
+      - api
+
+volumes:
+  postgres-data:
