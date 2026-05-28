@@ -30,7 +30,7 @@ export function MobileNav({ locale, dict }: { locale: Locale; dict: Dictionary }
 
       {open ? (
         <div className="fixed inset-0 z-[120] bg-slate-950/70 p-4 backdrop-blur-sm lg:hidden">
-          <div className="mx-auto max-w-md">
+          <div className="mx-auto flex h-[calc(100dvh-2rem)] max-w-md flex-col">
             <div className="mb-3 flex items-center justify-between rounded-[24px] bg-slate-950 px-4 py-3 text-white shadow-panel">
               <p className="font-semibold">{dict.product.title}</p>
               <Button
@@ -42,7 +42,9 @@ export function MobileNav({ locale, dict }: { locale: Locale; dict: Dictionary }
                 <X className="size-5" />
               </Button>
             </div>
-            <SidebarNav locale={locale} dict={dict} mobile onNavigate={() => setOpen(false)} />
+            <div className="min-h-0 flex-1">
+              <SidebarNav locale={locale} dict={dict} mobile onNavigate={() => setOpen(false)} />
+            </div>
           </div>
         </div>
       ) : null}

@@ -19,7 +19,7 @@ export function SidebarNav({ locale, dict, mobile = false, onNavigate }: Sidebar
     <aside
       className={
         mobile
-          ? "rounded-[26px] border border-white/10 bg-slate-950/35 p-4 text-white"
+          ? "flex h-full min-h-0 flex-col rounded-[26px] border border-white/10 bg-slate-950/35 p-4 text-white"
           : "glass-panel executive-card metric-glow rounded-[30px] border border-white/50 p-5 shadow-panel"
       }
     >
@@ -29,7 +29,13 @@ export function SidebarNav({ locale, dict, mobile = false, onNavigate }: Sidebar
         <p className="mt-4 text-sm leading-7 text-white/80">{dict.sidebar.description}</p>
       </div>
 
-      <nav className={mobile ? "grid max-h-[60vh] gap-2 overflow-y-auto pr-1" : "space-y-2"}>
+      <nav
+        className={
+          mobile
+            ? "grid min-h-0 flex-1 gap-2 overflow-y-auto overscroll-contain pr-1 pb-20"
+            : "space-y-2"
+        }
+      >
         {navItems.map((item) => {
           const Icon = Icons[item.icon as keyof typeof Icons] as Icons.LucideIcon;
           const href = item.href === "/portal" ? `/${locale}/portal` : `/${locale}${item.href}`;
@@ -49,7 +55,7 @@ export function SidebarNav({ locale, dict, mobile = false, onNavigate }: Sidebar
               }`}
             >
               <Icon className="size-4 shrink-0" />
-              <span className="line-clamp-1">{dict.screens[item.key]}</span>
+              <span className={mobile ? "text-base leading-7" : "line-clamp-1"}>{dict.screens[item.key]}</span>
             </Link>
           );
         })}
