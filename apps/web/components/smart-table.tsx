@@ -46,7 +46,39 @@ export function SmartTable({
           className="pl-9 rtl:pl-4 rtl:pr-9"
         />
       </div>
-      <div className="overflow-hidden rounded-3xl border">
+
+      <div className="grid gap-3 md:hidden">
+        {filtered.map((row, index) => (
+          <div key={`${String(row[columns[0].key])}-${index}`} className="rounded-3xl border bg-card p-4 shadow-sm">
+            <div className="space-y-3">
+              {columns.map((column) => {
+                const value = row[column.key];
+                const formatted =
+                  column.format === "currency" && typeof value === "number"
+                    ? formatCurrency(value)
+                    : value;
+
+                return (
+                  <div key={column.key} className="flex items-start justify-between gap-4">
+                    <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">
+                      {column.label}
+                    </span>
+                    <div className="text-right text-sm text-slate-700 dark:text-slate-200">
+                      {column.kind === "status" ? (
+                        <StatusBadge status={String(value)} />
+                      ) : (
+                        String(formatted ?? "-")
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="hidden overflow-hidden rounded-3xl border md:block">
         <div className="overflow-x-auto">
           <table className="min-w-full divide-y divide-border text-sm">
             <thead className="bg-muted/70">

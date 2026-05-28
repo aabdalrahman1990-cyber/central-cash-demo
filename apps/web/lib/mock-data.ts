@@ -14,15 +14,52 @@ export const mockData = {
     { label: { ar: "الموافقات المعلقة", en: "Pending approvals" }, value: "19" }
   ],
   liveMonitor: [
-    { label: { ar: "متوسط زمن المعالجة", en: "Average processing time" }, value: "3.8h", hint: { ar: "انخفاض 12% عن أمس", en: "12% lower than yesterday" } },
-    { label: { ar: "أداء SLA لشركات النقل", en: "CIT SLA performance" }, value: "97.6%", hint: { ar: "4 رحلات تحت المراقبة", en: "4 trips under watch" } },
-    { label: { ar: "حالات الفروقات المفتوحة", en: "Open discrepancy cases" }, value: "7", hint: { ar: "اثنتان بانتظار رد البنك", en: "Two awaiting bank response" } }
+    {
+      label: { ar: "متوسط زمن المعالجة", en: "Average processing time" },
+      value: "3.8h",
+      hint: { ar: "انخفاض 12% عن أمس", en: "12% lower than yesterday" }
+    },
+    {
+      label: { ar: "أداء SLA لشركات النقل", en: "CIT SLA performance" },
+      value: "97.6%",
+      hint: { ar: "4 رحلات تحت المراقبة", en: "4 trips under watch" }
+    },
+    {
+      label: { ar: "حالات الفروقات المفتوحة", en: "Open discrepancy cases" },
+      value: "7",
+      hint: { ar: "اثنتان بانتظار رد البنك", en: "Two awaiting bank response" }
+    }
   ],
   kpis: [
-    { id: "cashToday", label: { ar: "إجمالي النقد المستلم اليوم", en: "Total cash received today" }, value: 3780000000, currency: true, trend: 9, caption: { ar: "مقارنة بمتوسط آخر 7 أيام", en: "Compared with trailing 7-day average" } },
-    { id: "bagsToday", label: { ar: "عدد الحقائب المستلمة اليوم", en: "Bags received today" }, value: 148, trend: 11, caption: { ar: "حتى هذه اللحظة", en: "As of now" } },
-    { id: "matchedBags", label: { ar: "الحقائب المطابقة", en: "Matched bags" }, value: 131, trend: 7, caption: { ar: "بعد العد والتحقق", en: "After count verification" } },
-    { id: "rejectedBags", label: { ar: "الحقائب المرفوضة", en: "Rejected bags" }, value: 4, trend: -2, caption: { ar: "تشمل نقص بيانات أو ختم مكرر", en: "Includes missing data or duplicate seal" } }
+    {
+      id: "cashToday",
+      label: { ar: "إجمالي النقد المستلم اليوم", en: "Total cash received today" },
+      value: 3780000000,
+      currency: true,
+      trend: 9,
+      caption: { ar: "مقارنة بمتوسط آخر 7 أيام", en: "Compared with trailing 7-day average" }
+    },
+    {
+      id: "bagsToday",
+      label: { ar: "عدد الحقائب المستلمة اليوم", en: "Bags received today" },
+      value: 148,
+      trend: 11,
+      caption: { ar: "حتى هذه اللحظة", en: "As of now" }
+    },
+    {
+      id: "matchedBags",
+      label: { ar: "الحقائب المطابقة", en: "Matched bags" },
+      value: 131,
+      trend: 7,
+      caption: { ar: "بعد العد والتحقق", en: "After count verification" }
+    },
+    {
+      id: "rejectedBags",
+      label: { ar: "الحقائب المرفوضة", en: "Rejected bags" },
+      value: 4,
+      trend: -2,
+      caption: { ar: "تشمل نقص بيانات أو ختم مكرر", en: "Includes missing data or duplicate seal" }
+    }
   ],
   cashByBank: bankNames.map((bank, index) => ({
     nameAr: bank.ar,
@@ -37,18 +74,78 @@ export const mockData = {
     { nameAr: "مرفوض", nameEn: "Rejected", value: 4 }
   ],
   cashBags: [
-    { bagCode: "BAG-2026-00482", bank: "Rafidain Bank", branch: "Karrada", declaredAmount: 18000000, status: "In Transit" },
-    { bagCode: "BAG-2026-00483", bank: "Rasheed Bank", branch: "Basra Main", declaredAmount: 24000000, status: "Pending CBI Approval" },
-    { bagCode: "BAG-2026-00484", bank: "Bank of Baghdad", branch: "Mansour", declaredAmount: 12500000, status: "Matched" },
-    { bagCode: "BAG-2026-00485", bank: "Trade Bank of Iraq", branch: "Erbil", declaredAmount: 31000000, status: "Discrepancy Found" }
+    {
+      bagCode: "BAG-2026-00482",
+      bank: "Rafidain Bank",
+      branch: "Karrada",
+      declaredAmount: 18000000,
+      status: "In Transit"
+    },
+    {
+      bagCode: "BAG-2026-00483",
+      bank: "Rasheed Bank",
+      branch: "Basra Main",
+      declaredAmount: 24000000,
+      status: "Pending CBI Approval"
+    },
+    {
+      bagCode: "BAG-2026-00484",
+      bank: "Bank of Baghdad",
+      branch: "Mansour",
+      declaredAmount: 12500000,
+      status: "Matched"
+    },
+    {
+      bagCode: "BAG-2026-00485",
+      bank: "Trade Bank of Iraq",
+      branch: "Erbil",
+      declaredAmount: 31000000,
+      status: "Discrepancy Found"
+    }
   ],
   timeline: [
-    { bagCode: "BAG-2026-00482", title: { ar: "استلام شركة النقل", en: "CIT pickup confirmed" }, description: { ar: "تم مسح الحقيبة وربطها بالرحلة CIT-118.", en: "Bag scanned and assigned to trip CIT-118." }, status: "Picked Up by CIT", time: "2026-05-27 09:12" },
-    { bagCode: "BAG-2026-00483", title: { ar: "اعتماد مدير البنك المركزي", en: "CBI manager approval" }, description: { ar: "تم اعتماد استلام الحقيبة للمكتب النقدي.", en: "Cash desk receipt approved by CBI manager." }, status: "Accepted for Counting", time: "2026-05-27 10:06" },
-    { bagCode: "BAG-2026-00484", title: { ar: "مطابقة العد", en: "Count matched" }, description: { ar: "المبلغ الفعلي يساوي المبلغ المعلن وتم إغلاق الحقيبة.", en: "Actual amount matched declared amount and bag was closed." }, status: "Closed", time: "2026-05-27 10:54" },
-    { bagCode: "BAG-2026-00485", title: { ar: "فتح حالة فرق", en: "Discrepancy case opened" }, description: { ar: "تم إنشاء القضية DIS-2201 بسبب فرق 250,000 د.ع.", en: "Case DIS-2201 created for a 250,000 IQD variance." }, status: "Discrepancy Found", time: "2026-05-27 11:11" },
-    { bagCode: "BAG-2026-00486", title: { ar: "ربط الوسم الذكي", en: "Smart tag bound" }, description: { ar: "تم ربط RFID رقم RFID-90883 مع الختم SL-55490.", en: "RFID-90883 bound with seal SL-55490." }, status: "Sealed", time: "2026-05-27 11:42" },
-    { bagCode: "BAG-2026-00487", title: { ar: "إرجاع للفرع", en: "Returned to branch" }, description: { ar: "أُعيدت الحقيبة لعدم اكتمال تفاصيل الفئات.", en: "Bag returned due to incomplete denomination details." }, status: "Rejected", time: "2026-05-27 12:05" }
+    {
+      bagCode: "BAG-2026-00482",
+      title: { ar: "استلام شركة النقل", en: "CIT pickup confirmed" },
+      description: { ar: "تم مسح الحقيبة وربطها بالرحلة CIT-118.", en: "Bag scanned and assigned to trip CIT-118." },
+      status: "Picked Up by CIT",
+      time: "2026-05-27 09:12"
+    },
+    {
+      bagCode: "BAG-2026-00483",
+      title: { ar: "اعتماد مدير البنك المركزي", en: "CBI manager approval" },
+      description: { ar: "تم اعتماد استلام الحقيبة للمكتب النقدي.", en: "Cash desk receipt approved by CBI manager." },
+      status: "Accepted for Counting",
+      time: "2026-05-27 10:06"
+    },
+    {
+      bagCode: "BAG-2026-00484",
+      title: { ar: "مطابقة العد", en: "Count matched" },
+      description: { ar: "المبلغ الفعلي يساوي المبلغ المعلن وتم إغلاق الحقيبة.", en: "Actual amount matched declared amount and bag was closed." },
+      status: "Closed",
+      time: "2026-05-27 10:54"
+    },
+    {
+      bagCode: "BAG-2026-00485",
+      title: { ar: "فتح حالة فرق", en: "Discrepancy case opened" },
+      description: { ar: "تم إنشاء القضية DIS-2201 بسبب فرق 250,000 د.ع.", en: "Case DIS-2201 created for a 250,000 IQD variance." },
+      status: "Discrepancy Found",
+      time: "2026-05-27 11:11"
+    },
+    {
+      bagCode: "BAG-2026-00486",
+      title: { ar: "ربط الوسم الذكي", en: "Smart tag bound" },
+      description: { ar: "تم ربط RFID رقم RFID-90883 مع الختم SL-55490.", en: "RFID-90883 bound with seal SL-55490." },
+      status: "Sealed",
+      time: "2026-05-27 11:42"
+    },
+    {
+      bagCode: "BAG-2026-00487",
+      title: { ar: "إرجاع للفرع", en: "Returned to branch" },
+      description: { ar: "أُعيدت الحقيبة لعدم اكتمال تفاصيل الفئات.", en: "Bag returned due to incomplete denomination details." },
+      status: "Rejected",
+      time: "2026-05-27 12:05"
+    }
   ],
   managementRows: {
     banks: [

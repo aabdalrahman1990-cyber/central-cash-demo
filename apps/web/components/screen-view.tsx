@@ -22,24 +22,26 @@ export function ScreenView({
 
   return (
     <div className="space-y-4">
-      <Card className="glass-panel rounded-[30px] border shadow-panel">
-        <CardContent className="flex flex-col gap-4 p-6 lg:flex-row lg:items-end lg:justify-between">
+      <Card className="glass-panel rounded-[24px] border shadow-panel sm:rounded-[30px]">
+        <CardContent className="flex flex-col gap-4 p-5 sm:p-6 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <p className="text-sm text-slate-500 dark:text-slate-300">{dict.screenMeta.workflow}</p>
-            <h1 className="mt-2 text-3xl font-semibold">{title}</h1>
-            <p className="mt-3 max-w-3xl text-sm leading-8 text-slate-500 dark:text-slate-300">
+            <h1 className="mt-2 text-2xl font-semibold sm:text-3xl">{title}</h1>
+            <p className="mt-3 max-w-3xl text-sm leading-7 text-slate-500 dark:text-slate-300 sm:leading-8">
               {definition.description[locale]}
             </p>
           </div>
-          <div className="flex flex-wrap gap-3">
-            <Button>{definition.primaryAction[locale]}</Button>
-            <Button variant="outline">{dict.common.export}</Button>
+          <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <Button className="w-full sm:w-auto">{definition.primaryAction[locale]}</Button>
+            <Button variant="outline" className="w-full sm:w-auto">
+              {dict.common.export}
+            </Button>
           </div>
         </CardContent>
       </Card>
 
       <section className="grid gap-4 xl:grid-cols-[1.1fr_0.9fr]">
-        <Card className="glass-panel rounded-[28px] border shadow-panel">
+        <Card className="glass-panel rounded-[24px] border shadow-panel sm:rounded-[28px]">
           <CardHeader>
             <CardTitle>{dict.screenMeta.formSection}</CardTitle>
           </CardHeader>
@@ -53,14 +55,14 @@ export function ScreenView({
           </CardContent>
         </Card>
 
-        <Card className="glass-panel rounded-[28px] border shadow-panel">
+        <Card className="glass-panel rounded-[24px] border shadow-panel sm:rounded-[28px]">
           <CardHeader>
             <CardTitle>{dict.screenMeta.approvalRules}</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             {definition.badges[locale].map((item) => (
               <div key={item.title} className="rounded-3xl border bg-card p-4">
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between gap-3">
                   <p className="font-medium">{item.title}</p>
                   <StatusBadge status={item.status} />
                 </div>
@@ -71,12 +73,16 @@ export function ScreenView({
         </Card>
       </section>
 
-      <Card className="glass-panel rounded-[28px] border shadow-panel">
-        <CardHeader className="flex flex-row items-center justify-between">
+      <Card className="glass-panel rounded-[24px] border shadow-panel sm:rounded-[28px]">
+        <CardHeader className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <CardTitle>{dict.screenMeta.operationalData}</CardTitle>
-          <div className="flex gap-3">
-            <Button variant="outline">{dict.common.filters}</Button>
-            <Button variant="outline">{dict.common.search}</Button>
+          <div className="flex flex-col gap-3 sm:flex-row">
+            <Button variant="outline" className="w-full sm:w-auto">
+              {dict.common.filters}
+            </Button>
+            <Button variant="outline" className="w-full sm:w-auto">
+              {dict.common.search}
+            </Button>
           </div>
         </CardHeader>
         <CardContent>
