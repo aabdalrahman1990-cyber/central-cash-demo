@@ -20,7 +20,7 @@ export function SidebarNav({ locale, dict, mobile = false, onNavigate }: Sidebar
       className={
         mobile
           ? "rounded-[26px] border border-white/10 bg-slate-950/35 p-4 text-white"
-          : "glass-panel rounded-[30px] border p-5 shadow-panel"
+          : "glass-panel executive-card metric-glow rounded-[30px] border border-white/50 p-5 shadow-panel"
       }
     >
       <div className={`rounded-[26px] bg-[linear-gradient(140deg,rgba(8,47,73,1),rgba(21,128,61,0.95),rgba(234,179,8,0.72))] p-5 text-white ${mobile ? "mb-4" : "mb-6"}`}>
@@ -42,7 +42,7 @@ export function SidebarNav({ locale, dict, mobile = false, onNavigate }: Sidebar
               onClick={onNavigate}
               className={`flex items-center gap-3 rounded-2xl px-4 py-3 text-sm transition ${
                 active
-                  ? "bg-primary text-white shadow-lg shadow-cyan-900/20"
+                  ? "bg-[linear-gradient(135deg,rgba(3,105,161,1),rgba(13,148,136,0.92),rgba(217,119,6,0.82))] text-white shadow-lg shadow-cyan-900/20"
                   : mobile
                     ? "bg-white/5 text-white/85 hover:bg-white/10"
                     : "text-slate-600 hover:bg-muted dark:text-slate-300"

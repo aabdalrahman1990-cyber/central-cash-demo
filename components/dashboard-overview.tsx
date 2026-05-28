@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ArrowUpRight, Clock3, ShieldCheck } from "lucide-react";
 import { DashboardCharts } from "@/components/dashboard-charts";
 import { SmartTable } from "@/components/smart-table";
@@ -5,7 +6,7 @@ import { StatusBadge } from "@/components/status-badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { type Dictionary, type Locale } from "@/lib/i18n";
-import { formatCurrency } from "@/lib/utils";
+import { formatCompactCurrency, formatCurrency, formatNumber } from "@/lib/utils";
 import type { MockData } from "@/lib/mock-data";
 
 export function DashboardOverview({
@@ -20,10 +21,10 @@ export function DashboardOverview({
   return (
     <div className="space-y-4">
       <section className="grid gap-4 xl:grid-cols-[1.35fr_0.65fr]">
-        <Card className="overflow-hidden rounded-[24px] border-0 bg-[linear-gradient(135deg,rgba(8,47,73,1),rgba(8,145,178,0.92),rgba(217,119,6,0.78))] text-white shadow-panel sm:rounded-[30px]">
+        <Card className="overflow-hidden rounded-[24px] border-0 bg-[linear-gradient(135deg,rgba(7,31,58,1),rgba(9,93,122,0.96),rgba(185,112,25,0.88))] text-white shadow-panel sm:rounded-[30px]">
           <CardContent className="grid gap-6 p-5 sm:p-7 lg:grid-cols-[1.2fr_0.8fr] lg:items-end lg:gap-8">
             <div className="space-y-5">
-              <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.22em] sm:text-xs sm:tracking-[0.28em]">
+              <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.22em] backdrop-blur-sm sm:text-xs sm:tracking-[0.28em]">
                 <ShieldCheck className="size-4" />
                 {dict.dashboard.heroBadge}
               </div>
@@ -31,17 +32,31 @@ export function DashboardOverview({
                 <h1 className="text-2xl font-semibold sm:text-3xl lg:text-4xl">{dict.dashboard.title}</h1>
                 <p className="mt-4 max-w-2xl text-sm leading-7 text-white/80 sm:leading-8">{dict.dashboard.subtitle}</p>
               </div>
+              <div className="grid gap-3 sm:grid-cols-3">
+                <div className="rounded-3xl border border-white/10 bg-white/10 p-4 backdrop-blur-sm">
+                  <p className="text-xs text-white/65">RFID / QR</p>
+                  <p className="mt-2 text-lg font-semibold">Live Tagged Flow</p>
+                </div>
+                <div className="rounded-3xl border border-white/10 bg-white/10 p-4 backdrop-blur-sm">
+                  <p className="text-xs text-white/65">Approvals</p>
+                  <p className="mt-2 text-lg font-semibold">Maker Checker</p>
+                </div>
+                <div className="rounded-3xl border border-white/10 bg-white/10 p-4 backdrop-blur-sm">
+                  <p className="text-xs text-white/65">Audit</p>
+                  <p className="mt-2 text-lg font-semibold">Immutable Trace</p>
+                </div>
+              </div>
               <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                <Button className="w-full bg-white text-slate-900 hover:bg-white/90 sm:w-auto">
-                  {dict.common.createRequest}
+                <Button asChild className="w-full bg-white text-slate-900 hover:bg-white/90 sm:w-auto">
+                  <Link href={`/${locale}/portal/create-request`}>{dict.common.createRequest}</Link>
                 </Button>
-                <Button variant="outline" className="w-full border-white/25 bg-white/10 text-white hover:bg-white/20 sm:w-auto">
-                  {dict.common.export}
+                <Button asChild variant="outline" className="w-full border-white/25 bg-white/10 text-white hover:bg-white/20 sm:w-auto">
+                  <Link href={`/${locale}/portal/reports`}>{dict.common.export}</Link>
                 </Button>
               </div>
             </div>
 
-            <div className="grid gap-3 rounded-[28px] border border-white/15 bg-slate-950/15 p-5">
+            <div className="grid gap-3 rounded-[28px] border border-white/15 bg-slate-950/15 p-5 backdrop-blur-sm">
               {data.heroStats.map((item) => (
                 <div
                   key={item.label.en}
@@ -55,13 +70,13 @@ export function DashboardOverview({
           </CardContent>
         </Card>
 
-        <Card className="glass-panel rounded-[24px] border shadow-panel sm:rounded-[30px]">
+        <Card className="glass-panel executive-card metric-glow rounded-[24px] border border-white/50 shadow-panel sm:rounded-[30px]">
           <CardHeader>
             <CardTitle>{dict.dashboard.liveMonitor}</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             {data.liveMonitor.map((item) => (
-              <div key={item.label.en} className="rounded-3xl border bg-card p-4">
+              <div key={item.label.en} className="rounded-3xl border border-white/50 bg-card/90 p-4">
                 <div className="flex items-center justify-between">
                   <p className="text-sm text-slate-500 dark:text-slate-300">{item.label[locale]}</p>
                   <ArrowUpRight className="size-4 text-success" />
@@ -76,10 +91,12 @@ export function DashboardOverview({
 
       <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         {data.kpis.map((item) => (
-          <Card key={item.id} className="glass-panel rounded-[24px] border shadow-panel sm:rounded-[28px]">
+          <Card key={item.id} className="glass-panel executive-card metric-glow rounded-[24px] border border-white/50 shadow-panel sm:rounded-[28px]">
             <CardContent className="p-5">
-              <div className="flex items-center justify-between gap-3">
-                <p className="text-sm text-slate-500 dark:text-slate-300">{item.label[locale]}</p>
+              <div className="flex items-start justify-between gap-3">
+                <p className="max-w-[75%] text-sm leading-6 text-slate-500 dark:text-slate-300">
+                  {item.label[locale]}
+                </p>
                 <span
                   className={`shrink-0 rounded-full px-3 py-1 text-xs font-semibold ${
                     item.trend > 0
@@ -91,12 +108,23 @@ export function DashboardOverview({
                   {item.trend}%
                 </span>
               </div>
-              <p className="mt-4 text-3xl font-semibold">
-                {item.currency ? formatCurrency(item.value) : item.value.toLocaleString(locale)}
-              </p>
+
+              <div className="mt-4 space-y-2">
+                <p className="break-words text-[clamp(1.55rem,4.1vw,2.7rem)] font-semibold leading-none tracking-tight text-slate-950 dark:text-white">
+                  {item.currency
+                    ? formatCurrency(item.value, locale)
+                    : formatNumber(item.value, locale)}
+                </p>
+                {item.currency ? (
+                  <p className="text-xs text-slate-500 dark:text-slate-400">
+                    {formatCompactCurrency(item.value, locale)}
+                  </p>
+                ) : null}
+              </div>
+
               <div className="mt-4 flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
-                <Clock3 className="size-3.5" />
-                {item.caption[locale]}
+                <Clock3 className="size-3.5 shrink-0" />
+                <span>{item.caption[locale]}</span>
               </div>
             </CardContent>
           </Card>
@@ -106,11 +134,11 @@ export function DashboardOverview({
       <DashboardCharts locale={locale} dict={dict} data={data} />
 
       <section className="grid gap-4 xl:grid-cols-[1.2fr_0.8fr]">
-        <Card className="glass-panel rounded-[24px] border shadow-panel sm:rounded-[28px]">
+        <Card className="glass-panel executive-card metric-glow rounded-[24px] border border-white/50 shadow-panel sm:rounded-[28px]">
           <CardHeader className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <CardTitle>{dict.dashboard.recentBags}</CardTitle>
-            <Button variant="outline" className="w-full sm:w-auto">
-              {dict.common.export}
+            <Button asChild variant="outline" className="w-full sm:w-auto">
+              <Link href={`/${locale}/portal/cash-bag`}>{dict.common.export}</Link>
             </Button>
           </CardHeader>
           <CardContent>
@@ -128,7 +156,7 @@ export function DashboardOverview({
           </CardContent>
         </Card>
 
-        <Card className="glass-panel rounded-[24px] border shadow-panel sm:rounded-[28px]">
+        <Card className="glass-panel executive-card metric-glow rounded-[24px] border border-white/50 shadow-panel sm:rounded-[28px]">
           <CardHeader>
             <CardTitle>{dict.dashboard.timeline}</CardTitle>
           </CardHeader>

@@ -25,12 +25,15 @@ export function PortalShell({
         </div>
 
         <div className="space-y-4">
-          <header className="glass-panel flex flex-col gap-4 rounded-[24px] border p-4 shadow-panel sm:rounded-[28px] sm:p-5 md:flex-row md:items-center md:justify-between">
+          <header className="glass-panel executive-card metric-glow flex flex-col gap-4 rounded-[24px] border border-white/50 p-4 shadow-panel sm:rounded-[28px] sm:p-5 md:flex-row md:items-center md:justify-between">
             <div className="flex items-start gap-3">
               <MobileNav locale={locale} dict={dict} />
               <div>
                 <p className="text-xs text-slate-500 dark:text-slate-300 sm:text-sm">{dict.product.kicker}</p>
                 <h2 className="text-lg font-semibold text-foreground sm:text-2xl">{dict.product.title}</h2>
+                <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
+                  Central cash operations command center
+                </p>
               </div>
             </div>
 
@@ -48,7 +51,7 @@ export function PortalShell({
                   <Globe className="size-4" />
                   {oppositeLocale.toUpperCase()}
                 </Link>
-                <button className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border bg-card text-foreground transition hover:bg-muted">
+                <button className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border bg-card/90 text-foreground transition hover:bg-muted">
                   <Bell className="size-4" />
                 </button>
                 <ThemeToggle />
