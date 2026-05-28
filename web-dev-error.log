@@ -33,3 +33,73 @@
 }
  ⚠ Fast Refresh had to perform a full reload due to a runtime error.
  ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⨯ ./lib/i18n.ts
+Error: 
+
+Caused by:
+    0: Failed to read source code from C:\Users\aabda\Desktop\مشروع البنك المركزي\apps\web\lib\i18n.ts
+    1: The system cannot find the file specified. (os error 2)
+
+Import trace for requested module:
+./lib/i18n.ts
+./components/sidebar-nav.tsx
+ ⨯ ./components/platform-provider.tsx
+Error: 
+
+Caused by:
+    0: Failed to read source code from C:\Users\aabda\Desktop\مشروع البنك المركزي\apps\web\components\platform-provider.tsx
+    1: The system cannot find the file specified. (os error 2)
+
+Import trace for requested module:
+./components/platform-provider.tsx
+./components/dashboard-overview.tsx
+ ⨯ ./components/screen-view.tsx
+Error: 
+
+Caused by:
+    0: Failed to read source code from C:\Users\aabda\Desktop\مشروع البنك المركزي\apps\web\components\screen-view.tsx
+    1: The system cannot find the file specified. (os error 2)
+
+Import trace for requested module:
+./components/screen-view.tsx
+./app/[locale]/portal/[screen]/page.tsx
+ ⨯ ./components/smart-table.tsx
+Error: 
+
+Caused by:
+    0: Failed to read source code from C:\Users\aabda\Desktop\مشروع البنك المركزي\apps\web\components\smart-table.tsx
+    1: The system cannot find the file specified. (os error 2)
+
+Import trace for requested module:
+./components/smart-table.tsx
+./components/dashboard-overview.tsx
+ ⨯ ./components/dashboard-overview.tsx
+Error: 
+
+Caused by:
+    0: Failed to read source code from C:\Users\aabda\Desktop\مشروع البنك المركزي\apps\web\components\dashboard-overview.tsx
+    1: The system cannot find the file specified. (os error 2)
+
+Import trace for requested module:
+./components/dashboard-overview.tsx
+./app/[locale]/portal/page.tsx
+ ⨯ ./lib/utils.ts
+Error: 
+
+Caused by:
+    0: Failed to read source code from C:\Users\aabda\Desktop\مشروع البنك المركزي\apps\web\lib\utils.ts
+    1: The system cannot find the file specified. (os error 2)
+
+Import trace for requested module:
+./lib/utils.ts
+./components/dashboard-overview.tsx
+ ⨯ ./lib/mock-data.ts
+Error: 
+
+Caused by:
+    0: Failed to read source code from C:\Users\aabda\Desktop\مشروع البنك المركزي\apps\web\lib\mock-data.ts
+    1: The system cannot find the file specified. (os error 2)
+
+Import trace for requested module:
+./lib/mock-data.ts
+./components/platform-provider.tsx
