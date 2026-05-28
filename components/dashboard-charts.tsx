@@ -16,9 +16,13 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { type Dictionary, type Locale } from "@/lib/i18n";
 import { formatCompactCurrency } from "@/lib/utils";
-import type { MockData } from "@/lib/mock-data";
 
 const COLORS = ["#0f766e", "#0369a1", "#f59e0b", "#ef4444", "#14b8a6", "#1d4ed8"];
+
+type ChartData = {
+  cashByBank: { nameAr: string; nameEn: string; amount: number }[];
+  bagsByStatus: { nameAr: string; nameEn: string; value: number }[];
+};
 
 export function DashboardCharts({
   locale,
@@ -27,7 +31,7 @@ export function DashboardCharts({
 }: {
   locale: Locale;
   dict: Dictionary;
-  data: MockData;
+  data: ChartData;
 }) {
   return (
     <section className="grid gap-4 xl:grid-cols-3">

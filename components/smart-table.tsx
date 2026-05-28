@@ -47,28 +47,25 @@ export function SmartTable({
         />
       </div>
 
+      {!filtered.length ? (
+        <div className="rounded-3xl border border-dashed bg-muted/40 p-6 text-center text-sm text-slate-500 dark:text-slate-300">
+          {locale === "ar" ? "لا توجد نتائج مطابقة للبحث أو الفلتر الحالي." : "No records match the current search or filter."}
+        </div>
+      ) : null}
+
       <div className="grid gap-3 md:hidden">
         {filtered.map((row, index) => (
           <div key={`${String(row[columns[0].key])}-${index}`} className="rounded-3xl border bg-card p-4 shadow-sm">
             <div className="space-y-3">
               {columns.map((column) => {
                 const value = row[column.key];
-                const formatted =
-                  column.format === "currency" && typeof value === "number"
-                    ? formatCurrency(value)
-                    : value;
+                const formatted = column.format === "currency" && typeof value === "number" ? formatCurrency(value, locale) : value;
 
                 return (
                   <div key={column.key} className="flex items-start justify-between gap-4">
-                    <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">
-                      {column.label}
-                    </span>
+                    <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">{column.label}</span>
                     <div className="text-right text-sm text-slate-700 dark:text-slate-200">
-                      {column.kind === "status" ? (
-                        <StatusBadge status={String(value)} />
-                      ) : (
-                        String(formatted ?? "-")
-                      )}
+                      {column.kind === "status" ? <StatusBadge status={String(value)} /> : String(formatted ?? "-")}
                     </div>
                   </div>
                 );
@@ -84,10 +81,7 @@ export function SmartTable({
             <thead className="bg-muted/70">
               <tr>
                 {columns.map((column) => (
-                  <th
-                    key={column.key}
-                    className="px-4 py-3 text-start font-semibold text-slate-600 dark:text-slate-200"
-                  >
+                  <th key={column.key} className="px-4 py-3 text-start font-semibold text-slate-600 dark:text-slate-200">
                     {column.label}
                   </th>
                 ))}
@@ -98,18 +92,11 @@ export function SmartTable({
                 <tr key={`${String(row[columns[0].key])}-${index}`} className="hover:bg-muted/40">
                   {columns.map((column) => {
                     const value = row[column.key];
-                    const formatted =
-                      column.format === "currency" && typeof value === "number"
-                        ? formatCurrency(value)
-                        : value;
+                    const formatted = column.format === "currency" && typeof value === "number" ? formatCurrency(value, locale) : value;
 
                     return (
                       <td key={column.key} className="px-4 py-3 text-slate-600 dark:text-slate-200">
-                        {column.kind === "status" ? (
-                          <StatusBadge status={String(value)} />
-                        ) : (
-                          String(formatted ?? "-")
-                        )}
+                        {column.kind === "status" ? <StatusBadge status={String(value)} /> : String(formatted ?? "-")}
                       </td>
                     );
                   })}

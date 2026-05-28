@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { SidebarNav } from "@/components/sidebar-nav";
 import { Button } from "@/components/ui/button";
@@ -9,19 +9,27 @@ import type { Dictionary, Locale } from "@/lib/i18n";
 export function MobileNav({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   const [open, setOpen] = useState(false);
 
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
   return (
     <>
       <Button
         type="button"
         variant="outline"
-        className="h-11 w-11 rounded-2xl p-0 lg:hidden"
-        onClick={() => setOpen(true)}
+        className="h-12 w-12 rounded-2xl border-white/60 bg-white/90 p-0 shadow-sm backdrop-blur-sm lg:hidden"
+        onClick={() => setOpen((value) => !value)}
+        aria-label={open ? "Close navigation" : "Open navigation"}
       >
-        <Menu className="size-5" />
+        {open ? <X className="size-5" /> : <Menu className="size-5" />}
       </Button>
 
       {open ? (
-        <div className="fixed inset-0 z-50 bg-slate-950/65 p-4 backdrop-blur-sm lg:hidden">
+        <div className="fixed inset-0 z-[120] bg-slate-950/70 p-4 backdrop-blur-sm lg:hidden">
           <div className="mx-auto max-w-md">
             <div className="mb-3 flex items-center justify-between rounded-[24px] bg-slate-950 px-4 py-3 text-white shadow-panel">
               <p className="font-semibold">{dict.product.title}</p>
